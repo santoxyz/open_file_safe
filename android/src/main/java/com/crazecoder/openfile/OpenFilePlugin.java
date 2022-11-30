@@ -350,24 +350,13 @@ public class OpenFilePlugin implements MethodCallHandler
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void openApkFile() {
-        if (!canInstallApk()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startInstallPermissionSettingActivity();
-            } else {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, REQUEST_CODE);
-            }
-        } else {
-            startActivity();
-        }
+	//SNTX feature not supported!
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean canInstallApk() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return activity.getPackageManager().canRequestPackageInstalls();
-        }
-        return hasPermission(Manifest.permission.REQUEST_INSTALL_PACKAGES);
+	//SNTX feature not supported!
+	return false;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -406,7 +395,8 @@ public class OpenFilePlugin implements MethodCallHandler
             if (canInstallApk()) {
                 startActivity();
             } else {
-                result(-3, "Permission denied: " + Manifest.permission.REQUEST_INSTALL_PACKAGES);
+		//SNTX Feature not supported
+                result(-3, "Permission denied: APK install not supported.");
             }
         }
         return false;
